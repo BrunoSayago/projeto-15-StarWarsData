@@ -1,10 +1,16 @@
 import React from 'react';
+import Provider from './context/MyContext';
+import Table from './components/Table';
 import './App.css';
-// começando projeto
 
 function App() {
   return (
-    <span>Hello, App!</span>
+    <div className="App">
+      <Provider>
+        <span>Hello, App!</span>
+        <Table />
+      </Provider>
+    </div>
   );
 }
 
