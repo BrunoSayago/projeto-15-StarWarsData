@@ -7,6 +7,7 @@ const PLANET_API = 'https://swapi.dev/api/planets';
 
 function Provider({ children }) {
   const [planetsInfo, setPlanetsInfo] = useState([]);
+  const [filtroNome, setFiltroNome] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +21,13 @@ function Provider({ children }) {
     fetchData();
   }, []);
 
-  const contextValue = useMemo(() => ({ planetsInfo }), [planetsInfo]);
+  const mudaFiltro = ({ target: { value } }) => setFiltroNome(value);
+
+  const contextValue = useMemo(() => ({
+    planetsInfo,
+    filtroNome,
+    mudaFiltro,
+  }), [planetsInfo, filtroNome]);
 
   return (
     <MyContext.Provider value={ contextValue }>
