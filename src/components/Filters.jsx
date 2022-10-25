@@ -3,8 +3,10 @@ import { MyContext } from '../context/MyContext';
 
 export default function Filters() {
   const {
+    listaColuna,
+    filterByNumericValues,
+    handleFilterByNumericValues,
     mudaFiltro,
-    botaoFiltro,
     mudaFiltroColuna,
     mudaFiltroComp,
     mudaFiltroNumero,
@@ -32,11 +34,16 @@ export default function Filters() {
           data-testid="column-filter"
           onChange={ mudaFiltroColuna }
         >
-          <option value="population">population</option>
+          {
+            listaColuna.map((coluna) => (
+              <option key={ coluna } value={ coluna }>{coluna}</option>
+            ))
+          }
+          {/* <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
           <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          <option value="surface_water">surface_water</option> */}
         </select>
 
         <select
@@ -61,11 +68,19 @@ export default function Filters() {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ botaoFiltro }
+          onClick={ handleFilterByNumericValues }
         >
           Filtrar
         </button>
       </div>
+
+      {
+        filterByNumericValues.map(({ coluna, comparacao, numero }) => (
+          <div key={ coluna }>
+            <p>{`${coluna} ${comparacao} ${numero}`}</p>
+          </div>
+        ))
+      }
 
     </div>
 

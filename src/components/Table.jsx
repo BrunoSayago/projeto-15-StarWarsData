@@ -5,7 +5,17 @@ function Table() {
   const {
     planetsInfo,
     filtroNome,
+    botaoFiltro,
+    filterByNumericValues,
   } = useContext(MyContext);
+
+  const filtragemInicial = filterByNumericValues.length < 1
+    ? planetsInfo : filterByNumericValues
+      .reduce((prev, {
+        coluna,
+        comparacao,
+        numero,
+      }) => botaoFiltro(prev, coluna, comparacao, numero), planetsInfo);
 
   return (
     <table>
@@ -28,7 +38,7 @@ function Table() {
       </thead>
       <tbody>
         {
-          planetsInfo
+          filtragemInicial
             .filter(({ name: nome }) => (
               nome.toLowerCase().includes(filtroNome.toLowerCase())))
             .map(({

@@ -11,6 +11,8 @@ function Provider({ children }) {
   const [filtroColuna, setFiltroColuna] = useState('population');
   const [filtroComparacao, setFiltroComparacao] = useState('maior que');
   const [filtroNumero, setFiltroNumero] = useState(0);
+  const [listaColuna, setListaColuna] = useState([]);
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +23,13 @@ function Provider({ children }) {
         return elemento;
       }));
     };
+    setListaColuna([
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ]);
     fetchData();
   }, []);
 
@@ -32,19 +41,44 @@ function Provider({ children }) {
 
   const mudaFiltroNumero = ({ target: { value } }) => setFiltroNumero(value);
 
-  const botaoFiltro = useCallback(() => {
-    const listaFiltrada = planetsInfo.filter((elemento) => {
-      switch (filtroComparacao) {
+  useEffect(() => {
+    const atualizaColunaDefault = () => setFiltroColuna(listaColuna[0]);
+    atualizaColunaDefault();
+  }, [listaColuna]);
+
+  const handleFilterByNumericValues = useCallback(() => {
+    setFilterByNumericValues([
+      ...filterByNumericValues,
+      { coluna: filtroColuna, comparacao: filtroComparacao, numero: filtroNumero },
+    ]);
+    if (listaColuna.length > 1) {
+      setListaColuna(listaColuna.filter((coluna) => coluna !== filtroColuna));
+      const atualizaListaColuna = () => setFiltroColuna(listaColuna[0]);
+      atualizaListaColuna();
+    } else {
+      setListaColuna([]);
+    }
+  }, [
+    listaColuna,
+    filterByNumericValues,
+    filtroComparacao,
+    filtroColuna,
+    filtroNumero,
+  ]);
+
+  const botaoFiltro = useCallback((lista, coluna, comparacao, numero) => {
+    const listaFiltrada = lista.filter((elemento) => {
+      switch (comparacao) {
       case 'maior que':
-        return Number(elemento[filtroColuna]) > Number(filtroNumero);
+        return Number(elemento[coluna]) > Number(numero);
       case 'menor que':
-        return Number(elemento[filtroColuna]) < Number(filtroNumero);
+        return Number(elemento[coluna]) < Number(numero);
       default:
-        return Number(elemento[filtroColuna]) === Number(filtroNumero);
+        return Number(elemento[coluna]) === Number(numero);
       }
     });
-    setPlanetsInfo(listaFiltrada);
-  }, [filtroColuna, filtroComparacao, filtroNumero, planetsInfo]);
+    return listaFiltrada;
+  }, []);
 
   const contextValue = useMemo(() => ({
     planetsInfo,
@@ -52,13 +86,24 @@ function Provider({ children }) {
     filtroColuna,
     filtroComparacao,
     filtroNumero,
+    listaColuna,
+    filterByNumericValues,
+    handleFilterByNumericValues,
     mudaFiltroColuna,
     mudaFiltroComp,
     mudaFiltroNumero,
     mudaFiltro,
     botaoFiltro,
   }), [planetsInfo,
-    filtroNome, filtroColuna, filtroComparacao, filtroNumero, botaoFiltro]);
+    filtroNome,
+    listaColuna,
+    filtroColuna,
+    filtroComparacao,
+    filtroNumero,
+    botaoFiltro,
+    filterByNumericValues,
+    handleFilterByNumericValues,
+  ]);
 
   return (
     <MyContext.Provider value={ contextValue }>
