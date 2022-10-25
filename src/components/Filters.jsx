@@ -1,25 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 
 export default function Filters() {
-//   const [, setPlanetsInfo] = useState([]);
-  const { mudaFiltro, botaoFiltro } = useContext(MyContext);
-
-  const [selectedColumn, setSelectedColumn] = useState('population');
-  const [selectedComparison, setSelectedComparison] = useState('maior que');
-  const [numberFilter, setNumberFilter] = useState(0);
-
-  const handleChangeSelectColumn = (event) => {
-    setSelectedColumn(event.target.value);
-  };
-
-  const handleChangeSelectComp = (event) => {
-    setSelectedComparison(event.target.value);
-  };
-
-  const handleChangeNumb = (event) => {
-    setNumberFilter(event.target.value);
-  };
+  const {
+    mudaFiltro,
+    botaoFiltro,
+    mudaFiltroColuna,
+    mudaFiltroComp,
+    mudaFiltroNumero,
+  } = useContext(MyContext);
 
   return (
     <div>
@@ -41,8 +30,7 @@ export default function Filters() {
         <select
           name="column-filter"
           data-testid="column-filter"
-          value={ selectedColumn }
-          onChange={ handleChangeSelectColumn }
+          onChange={ mudaFiltroColuna }
         >
           <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
@@ -54,8 +42,7 @@ export default function Filters() {
         <select
           name="comparison-filter"
           data-testid="comparison-filter"
-          value={ selectedComparison }
-          onChange={ handleChangeSelectComp }
+          onChange={ mudaFiltroComp }
         >
           <option value="maior que">maior que</option>
           <option value="menor que">menor que</option>
@@ -67,14 +54,14 @@ export default function Filters() {
           name="value-filter"
           id="value-filter"
           data-testid="value-filter"
-          value={ numberFilter }
-          onChange={ handleChangeNumb }
+          defaultValue={ 0 }
+          onChange={ mudaFiltroNumero }
         />
 
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ () => botaoFiltro(selectedColumn, selectedComparison, numberFilter) }
+          onClick={ botaoFiltro }
         >
           Filtrar
         </button>

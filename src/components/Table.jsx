@@ -5,9 +5,6 @@ function Table() {
   const {
     planetsInfo,
     filtroNome,
-    filtroColuna,
-    filtroComparacao,
-    filtroNumero,
   } = useContext(MyContext);
 
   return (
@@ -34,18 +31,6 @@ function Table() {
           planetsInfo
             .filter(({ name: nome }) => (
               nome.toLowerCase().includes(filtroNome.toLowerCase())))
-            .filter((elemento) => {
-              switch (filtroComparacao) {
-              case 'maior que':
-                return elemento[filtroColuna] > Number(filtroNumero);
-              case 'menor que':
-                return elemento[filtroColuna] < Number(filtroNumero);
-              case 'igual a':
-                return Number(elemento[filtroColuna]) === Number(filtroNumero);
-              default:
-                return true;
-              }
-            })
             .map(({
               name: nome,
               rotation_period: rotacao,

@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState, useEffect } from 'react';
+import React, { createContext, useMemo, useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 export const MyContext = createContext();
@@ -26,11 +26,25 @@ function Provider({ children }) {
 
   const mudaFiltro = ({ target: { value } }) => setFiltroNome(value);
 
-  const botaoFiltro = (valorColuna, valorComparacao, valorNumero) => {
-    setFiltroColuna(valorColuna);
-    setFiltroComparacao(valorComparacao);
-    setFiltroNumero(valorNumero);
-  };
+  const mudaFiltroColuna = ({ target: { value } }) => setFiltroColuna(value);
+
+  const mudaFiltroComp = ({ target: { value } }) => setFiltroComparacao(value);
+
+  const mudaFiltroNumero = ({ target: { value } }) => setFiltroNumero(value);
+
+  const botaoFiltro = useCallback(() => {
+    const listaFiltrada = planetsInfo.filter((elemento) => {
+      switch (filtroComparacao) {
+      case 'maior que':
+        return Number(elemento[filtroColuna]) > Number(filtroNumero);
+      case 'menor que':
+        return Number(elemento[filtroColuna]) < Number(filtroNumero);
+      default:
+        return Number(elemento[filtroColuna]) === Number(filtroNumero);
+      }
+    });
+    setPlanetsInfo(listaFiltrada);
+  }, [filtroColuna, filtroComparacao, filtroNumero, planetsInfo]);
 
   const contextValue = useMemo(() => ({
     planetsInfo,
@@ -38,9 +52,13 @@ function Provider({ children }) {
     filtroColuna,
     filtroComparacao,
     filtroNumero,
+    mudaFiltroColuna,
+    mudaFiltroComp,
+    mudaFiltroNumero,
     mudaFiltro,
     botaoFiltro,
-  }), [planetsInfo, filtroNome, filtroColuna, filtroComparacao, filtroNumero]);
+  }), [planetsInfo,
+    filtroNome, filtroColuna, filtroComparacao, filtroNumero, botaoFiltro]);
 
   return (
     <MyContext.Provider value={ contextValue }>
