@@ -8,6 +8,9 @@ const PLANET_API = 'https://swapi.dev/api/planets';
 function Provider({ children }) {
   const [planetsInfo, setPlanetsInfo] = useState([]);
   const [filtroNome, setFiltroNome] = useState('');
+  const [filtroColuna, setFiltroColuna] = useState('population');
+  const [filtroComparacao, setFiltroComparacao] = useState('maior que');
+  const [filtroNumero, setFiltroNumero] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,11 +26,21 @@ function Provider({ children }) {
 
   const mudaFiltro = ({ target: { value } }) => setFiltroNome(value);
 
+  const botaoFiltro = (valorColuna, valorComparacao, valorNumero) => {
+    setFiltroColuna(valorColuna);
+    setFiltroComparacao(valorComparacao);
+    setFiltroNumero(valorNumero);
+  };
+
   const contextValue = useMemo(() => ({
     planetsInfo,
     filtroNome,
+    filtroColuna,
+    filtroComparacao,
+    filtroNumero,
     mudaFiltro,
-  }), [planetsInfo, filtroNome]);
+    botaoFiltro,
+  }), [planetsInfo, filtroNome, filtroColuna, filtroComparacao, filtroNumero]);
 
   return (
     <MyContext.Provider value={ contextValue }>

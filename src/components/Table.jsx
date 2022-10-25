@@ -2,7 +2,13 @@ import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 
 function Table() {
-  const { planetsInfo, filtroNome } = useContext(MyContext);
+  const {
+    planetsInfo,
+    filtroNome,
+    filtroColuna,
+    filtroComparacao,
+    filtroNumero,
+  } = useContext(MyContext);
 
   return (
     <table>
@@ -28,6 +34,18 @@ function Table() {
           planetsInfo
             .filter(({ name: nome }) => (
               nome.toLowerCase().includes(filtroNome.toLowerCase())))
+            .filter((elemento) => {
+              switch (filtroComparacao) {
+              case 'maior que':
+                return elemento[filtroColuna] > Number(filtroNumero);
+              case 'menor que':
+                return elemento[filtroColuna] < Number(filtroNumero);
+              case 'igual a':
+                return Number(elemento[filtroColuna]) === Number(filtroNumero);
+              default:
+                return true;
+              }
+            })
             .map(({
               name: nome,
               rotation_period: rotacao,
@@ -46,13 +64,13 @@ function Table() {
               <tr key={ nome }>
                 <td>{nome}</td>
                 <td>
-                  {rotacao}
+                  {Number(rotacao)}
                 </td>
                 <td>
-                  {orbita}
+                  {Number(orbita)}
                 </td>
                 <td>
-                  {diameter}
+                  {Number(diameter)}
                 </td>
                 <td>
                   {climate}
@@ -64,7 +82,7 @@ function Table() {
                   {terrain}
                 </td>
                 <td>
-                  {agua}
+                  {Number(agua)}
                 </td>
                 <td>
                   {population}
