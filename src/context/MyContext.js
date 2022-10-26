@@ -80,6 +80,24 @@ function Provider({ children }) {
     return listaFiltrada;
   }, []);
 
+  const botaoApagaTodosFiltros = useCallback(() => {
+    setFilterByNumericValues([]);
+    setListaColuna([
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ]);
+  }, []);
+
+  const botaoApagaFiltro = useCallback((coluna) => {
+    const retornaColuna = filterByNumericValues
+      .filter((elemento) => elemento.coluna !== coluna);
+    setFilterByNumericValues(retornaColuna);
+    setListaColuna([...listaColuna, coluna]);
+  }, [filterByNumericValues, listaColuna]);
+
   const contextValue = useMemo(() => ({
     planetsInfo,
     filtroNome,
@@ -88,12 +106,14 @@ function Provider({ children }) {
     filtroNumero,
     listaColuna,
     filterByNumericValues,
+    botaoApagaTodosFiltros,
     handleFilterByNumericValues,
     mudaFiltroColuna,
     mudaFiltroComp,
     mudaFiltroNumero,
     mudaFiltro,
     botaoFiltro,
+    botaoApagaFiltro,
   }), [planetsInfo,
     filtroNome,
     listaColuna,
@@ -103,6 +123,8 @@ function Provider({ children }) {
     botaoFiltro,
     filterByNumericValues,
     handleFilterByNumericValues,
+    botaoApagaTodosFiltros,
+    botaoApagaFiltro,
   ]);
 
   return (

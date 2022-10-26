@@ -10,6 +10,8 @@ export default function Filters() {
     mudaFiltroColuna,
     mudaFiltroComp,
     mudaFiltroNumero,
+    botaoApagaTodosFiltros,
+    botaoApagaFiltro,
   } = useContext(MyContext);
 
   return (
@@ -72,12 +74,26 @@ export default function Filters() {
         >
           Filtrar
         </button>
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ botaoApagaTodosFiltros }
+        >
+          Remover todos filtros
+        </button>
       </div>
 
       {
         filterByNumericValues.map(({ coluna, comparacao, numero }) => (
-          <div key={ coluna }>
+          <div key={ coluna } data-testid="filter">
             <p>{`${coluna} ${comparacao} ${numero}`}</p>
+
+            <button
+              type="button"
+              onClick={ () => botaoApagaFiltro(coluna) }
+            >
+              Excluir Filtro
+            </button>
           </div>
         ))
       }
