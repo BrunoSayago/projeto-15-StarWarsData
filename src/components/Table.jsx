@@ -16,7 +16,6 @@ function Table() {
         comparacao,
         numero,
       }) => botaoFiltro(prev, coluna, comparacao, numero), planetsInfo);
-  console.log(filtragemInicial);
 
   return (
     <table>
