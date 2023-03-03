@@ -1,13 +1,47 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Projeto 15 - Star Wars Data
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Oi. Este foi um dos projetos que eu fiz durante meu curso na Trybe. Confira os detalhes dele abaixo.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+
+
+
+## Nome do Projeto
+Star Wars Data (Dados de Star Wars)
+
+## Linguagens e Ferramentas Utilizadas
+
+ - JavaScript
+ - HTML
+ - CSS
+ - Kanban
+ - [Biblioteca React](https://pt-br.reactjs.org/)
+ - [React Router](https://reactrouter.com/en/main)
+ - [Redux](https://redux.js.org/)
+ - [React Redux](https://react-redux.js.org/)
+
+
+## Objetivos do Projeto
+Neste projeto foi desenvolvida uma aplicação de jogo de trivia (perguntas e respostas). Ele foi realizado em grupo, e junto comigo realizaram o projeto: [Lizia Towata](https://github.com/LiziaTowata), [Nelson Filho](https://github.com/NelsonFilho1984), [Robson Silva](https://github.com/rm-l), e [Elivelton Machado](https://github.com/El1v). A organização do grupo foi feita por meio do uso da metodologia ágil Kanban, diagramada em um quadro na ferramenta [Trello](https://trello.com/).
+
+<br/>
+
+Assim como o projeto [TrybeWallet](https://github.com/BrunoSayago/projeto-13-TrybeWallet), este projeto colocou em prática os conhecimentos de React em conjunto com o Redux. Entretanto, o principal intuito do projeto era simular uma situação real de mercado de trabalho, onde há necessidade de trabalhar em uma equipe de desenvolvedores, seguindo uma metodologia e um planejamento.
+
+<br/>
+Abaixo está um GIF que mostra a aplicação funcionando.
+<br/>
+
+![Screenshot](screenshotTrivia.gif)
+
+<br/>
+
+
+## Instruções para visualização
+Comando para clonar o projeto:
+ - `git clone git@github.com:BrunoSayago/projeto-14-TriviaGame.git`
+ 
+Se necessário, instalar as dependências:
+ - `npm install`
+  
+O projeto pode ser visualizado no navegador utilizando o comando:
+- `npm start`
