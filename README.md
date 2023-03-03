@@ -12,33 +12,26 @@ Star Wars Data (Dados de Star Wars)
 
  - JavaScript
  - HTML
- - CSS
- - Kanban
  - [Biblioteca React](https://pt-br.reactjs.org/)
  - [React Router](https://reactrouter.com/en/main)
- - [Redux](https://redux.js.org/)
- - [React Redux](https://react-redux.js.org/)
+ - Context API e ReactHooks
 
 
 ## Objetivos do Projeto
-Neste projeto foi desenvolvida uma aplicação de jogo de trivia (perguntas e respostas). Ele foi realizado em grupo, e junto comigo realizaram o projeto: [Lizia Towata](https://github.com/LiziaTowata), [Nelson Filho](https://github.com/NelsonFilho1984), [Robson Silva](https://github.com/rm-l), e [Elivelton Machado](https://github.com/El1v). A organização do grupo foi feita por meio do uso da metodologia ágil Kanban, diagramada em um quadro na ferramenta [Trello](https://trello.com/).
+Neste projeto foi consumida uma [API com dados da série de filmes Star Wars](https://swapi.dev/api/planets) para popular uma tabela. Essa tabela pode ser filtrada pela pessoa usuária por diversas maneiras. O intuito desse projeto foi desenvolver a aplicação utilizando os conceitos aprendidos de [Context API](https://reactjs.org/docs/context.html) e [React Hooks](https://reactjs.org/docs/hooks-intro.html). 
 
 <br/>
-
-Assim como o projeto [TrybeWallet](https://github.com/BrunoSayago/projeto-13-TrybeWallet), este projeto colocou em prática os conhecimentos de React em conjunto com o Redux. Entretanto, o principal intuito do projeto era simular uma situação real de mercado de trabalho, onde há necessidade de trabalhar em uma equipe de desenvolvedores, seguindo uma metodologia e um planejamento.
-
-<br/>
-Abaixo está um GIF que mostra a aplicação funcionando.
+Abaixo está um GIF que mostra a aplicação funcionando (vale lembrar que o objetivo principal do projeto era desenvolver a aplicação com foco na arquitetura do site utilizando React Hooks e Context API, e, por isso, não foi desenvolvido o CSS, portanto a aplicação está sem estilização).
 <br/>
 
-![Screenshot](screenshotTrivia.gif)
+![Screenshot](screenshotStar.gif)
 
 <br/>
 
 
 ## Instruções para visualização
 Comando para clonar o projeto:
- - `git clone git@github.com:BrunoSayago/projeto-14-TriviaGame.git`
+ - `git clone git@github.com:BrunoSayago/projeto-15-StarWarsData.git`
  
 Se necessário, instalar as dependências:
  - `npm install`
